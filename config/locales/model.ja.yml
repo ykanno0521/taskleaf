@@ -1,0 +1,14 @@
+# モデルは全て activerecord 以下に記述する。
+ # これにより、User.model_name.human / User.human_attribute_name({attr_name})で使用可能。
+
+ja:
+  activerecord:
+    models:
+      task: タスク
+    attributes:
+      task:
+        id: ID
+        name: 名称
+        description: 詳しい説明
+        created_at: 作成日
+        updated_at: 更新日
