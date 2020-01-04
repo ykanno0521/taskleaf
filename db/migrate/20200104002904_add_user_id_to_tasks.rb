@@ -1,5 +1,4 @@
 class AddUserIdToTasks < ActiveRecord::Migration[5.2]
-  def change
     def up
       execute 'DELETE FROM tasks;'
       add_reference :tasks, :user, null: false, index: true
@@ -8,6 +7,5 @@ class AddUserIdToTasks < ActiveRecord::Migration[5.2]
     def down
       remove_reference :tasks, :user, index: true
     end
-  end
 
 end
