@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     # @tasks = current_user.tasks.order(created_at: :desc)
     #@tasks = Task.where(user_id: current_user_id)と同様
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true).recent
+    @tasks = @q.result(distinct: true)
   end
 
   def show
