@@ -46,11 +46,13 @@ class Admin::UsersController < ApplicationController
 
 
   private
-  def user_params
-    params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    def user_params
+      params.require(:user).permit(:name, :email, :password, :password_confirmation)
+    end
+
+    def require_admin
+      redirect_to root_url, unless current_user.admin?
+    end
   end
 
-  def require_admin
-    redirect_to root_url, unless current_user.admin?
-  end
 end
