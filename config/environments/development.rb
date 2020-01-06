@@ -61,6 +61,7 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
+  config.active_job.queue_adapter = :sidekiq
   # set log
   config.logger = Logger.new('log/development.log', 'daily')
   config.custom_logger = Logger.new('log/custom.log', 'weekly')

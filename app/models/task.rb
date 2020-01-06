@@ -11,6 +11,9 @@ class Task < ApplicationRecord
 
   scope :recent, -> { order(created_at: :desc) }
 
+  # デフォルトで50件表示させる
+  # paginates_per 50
+
   # 検索条件を絞る
   def self.ransackable_attrbutes(auth_object = nil) # 検索対象のカラムを指定
     %w[name created_at]

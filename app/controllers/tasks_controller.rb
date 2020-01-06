@@ -5,7 +5,7 @@ class TasksController < ApplicationController
     # @tasks = current_user.tasks.order(created_at: :desc)
     #@tasks = Task.where(user_id: current_user_id)と同様
     @q = current_user.tasks.ransack(params[:q])
-    @tasks = @q.result(distinct: true)
+    @tasks = @q.result(distinct: true).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -37,7 +37,8 @@ class TasksController < ApplicationController
 
     if @task.save
       TaskMailer.creation_email(@task).deliver_now
-      logger.debug "task: #{@task.attributes.inspect}"
+      # logger.debug "task: #{@task.attributes.inspect}"
+      SampleJob.perform_later
       redirect_to @task, notice:"タスク「#{@task.name}」を登録しました。"
     else
       render :new
