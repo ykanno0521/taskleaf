@@ -59,7 +59,7 @@ class TasksController < ApplicationController
     # task = current_user.tasks.find(params[:id])
     @task.destroy
     # redirect_to tasks_url, notice: "タスク「#{@task.name}を削除しました」"
-    head :no_content
+    # head :no_content
   end
 
   def import
