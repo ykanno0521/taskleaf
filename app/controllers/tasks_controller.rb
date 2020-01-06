@@ -11,7 +11,7 @@ class TasksController < ApplicationController
       format.html
       format.csv { send_data @tasks.generate_csv, filename: "tasks-#{Time.zone.now.strftime('%Y%m%d%S')}.csv "}
     end
-    
+
   end
 
   def show
@@ -58,6 +58,11 @@ class TasksController < ApplicationController
     # task = current_user.tasks.find(params[:id])
     @task.destroy
     redirect_to tasks_url, notice: "タスク「#{@task.name}を削除しました」"
+  end
+
+  def import
+    current_user.tasks.import(params[:file])
+    redirect_to tasks_url, notice: "タスクを追加しました"
   end
 
   private
