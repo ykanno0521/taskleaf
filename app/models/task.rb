@@ -4,6 +4,9 @@ class Task < ApplicationRecord
   validates :name, presence: true, length: { maximum: 30}
   validate :validate_name_not_including_comma
 
+  # 一つのタスクに一つの画像を紐づける
+  has_one_attached :image
+
   belongs_to :user
 
   scope :recent, -> { order(created_at: :desc) }
